@@ -6,7 +6,10 @@ import { ffmpeg, transformVideo } from './ffmpeg'
 export const SelectVideosBtn = () => {
   const handleInput = async (e: ChangeEvent<HTMLInputElement>) => {
     let a = e.currentTarget.files[0]
-    let u = await transformVideo(a)
+    let u = await transformVideo(a).catch((e) => {
+      console.error(e)
+      return 'error'
+    })
     console.log(u)
   }
   return (
